@@ -6,4 +6,5 @@ import com.jfreed.librarymanagementsystem.entity.Book;
 
 public interface BookRepository extends JpaRepository<Book, String> {
     
+    Book findByIsbn(String isbn);
 }

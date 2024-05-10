@@ -11,30 +11,41 @@ import com.jfreed.librarymanagementsystem.service.BookService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 
 
 
 @Controller
+@RequestMapping("/books")
 public class BookController {
     
     @Autowired
     private BookService bookService;
 
-    @GetMapping("/books")
+    @GetMapping
     public String index(Model model) {
         List<Book> books = bookService.findAll();
         model.addAttribute("books", books);
         return "books/index";
     }
 
-    @GetMapping("/books/add")
+    @GetMapping("/view/{isbn}")
+    public String getMethodName(@ModelAttribute("isbn") String isbn, Model model) {
+        Book book = bookService.findByIsbn(isbn);
+        model.addAttribute("book", book);
+        return "books/view";
+    }
+    
+
+    @GetMapping("/add")
     public String create(Model model) {
         Book book = new Book();
         model.addAttribute("book", book);
         return "books/create";
     }
 
-    @PostMapping("/books/add")
+    @PostMapping("/add")
     public String save(@ModelAttribute("book") Book book, Model model) {
         bookService.save(book);
         return "redirect:/books";

@@ -18,6 +18,10 @@ public class BookService {
         return bookRepository.findAll();
     }
 
+    public Book findByIsbn(String isbn) {
+        return bookRepository.findByIsbn(isbn);
+    }
+
     public Book save(Book book) {
         return bookRepository.save(book);
     }
