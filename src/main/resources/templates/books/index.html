@@ -1,50 +1,51 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout.html}">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title th:text="${@environment.getProperty('spring.application.name')}"></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
+        <link rel="stylesheet" th:href="@{/css/bootstrap-4.1.3.min.css}">
+        <script type="text/javascript" th:href="@{/js/bootstrap-4.1.3.min.js}"></script>
+        <script type="text/javascript" th:href="@{/js/jquery-3.7.1min.js}"></script>
     </head>
     <body>
-        <h2>Books</h2>
-        <a th:href="@{/books/add}">Add Book</a>
-        <table>
-            <thead>
-                <th>ISBN</th>
-                <th>Title</th>
-                <th>Author</th>
-                <th>Publisher</th>
-                <th>Year</th>
-                <td>Actions</th>
-            </thead>
-            <tbody>
-                <tr th:each="book : ${books}">
-                    <td>
-                        <a th:href="@{/books/view/{isbn}(isbn=${book.isbn})}" th:text="${book.isbn}"/>
-                    </td>
-                    <td th:text="${book.title}"/>
-                    <td th:text="${book.author}"/>
-                    <td th:text="${book.publisher}"/>
-                    <td th:text="${book.year}"/>
-                    <td>
-                        <table>
-                            <tr>
-                                <td>
-                                    <a th:href="@{/books/view/{isbn}(isbn=${book.isbn})}" th:text="'View'"/>
-                                </td>
-                                <td>
-                                    <a th:href="@{/books/update/{isbn}(isbn=${book.isbn})}" th:text="'Update'"/>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        
-        <script src="" async defer></script>
+        <section layout:fragment="content">
+            <h2>Books</h2>
+            <a th:href="@{/books/add}">Add Book</a>
+            <table>
+                <thead>
+                    <th>ISBN</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Publisher</th>
+                    <th>Year</th>
+                    <td>Actions</th>
+                </thead>
+                <tbody>
+                    <tr th:each="book : ${books}">
+                        <td th:text="${book.isbn}"/>
+                        <td th:text="${book.title}"/>
+                        <td th:text="${book.author}"/>
+                        <td th:text="${book.publisher}"/>
+                        <td th:text="${book.year}"/>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <a th:href="@{/books/view/{isbn}(isbn=${book.isbn})}" th:text="'View'"/>
+                                    </td>
+                                    <td>
+                                        <a th:href="@{/books/update/{isbn}(isbn=${book.isbn})}" th:text="'Update'"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
     </body>
 </html>

@@ -1,37 +1,42 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout.html}">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title th:text="${@environment.getProperty('spring.application.name')}"></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
+        <link rel="stylesheet" th:href="@{/css/bootstrap-4.1.3.min.css}">
+        <script type="text/javascript" th:href="@{/js/bootstrap-4.1.3.min.js}"></script>
+        <script type="text/javascript" th:href="@{/js/jquery-3.7.1min.js}"></script>
     </head>
     <body>
-        <h2>Update book</h2>
-        <form action="#" method="post" th:action="@{/books/update/{isbn}(isbn=${book.isbn})}" th:object="${book}">
-            <div>
-                <label for="isbn">Title</label>
-                <input type="text" th:field="*{title}">
-            </div>
-            <div>
-                <label for="isbn">Author</label>
-                <input type="text" th:field="*{author}">
-            </div>
-            <div>
-                <label for="isbn">Publisher</label>
-                <input type="text" th:field="*{publisher}">
-            </div>
-            <div>
-                <label for="isbn">Year</label>
-                <input type="text" th:field="*{year}">
-            </div>
-            <div>
-                <button type="submit" th:text="'Submit'"/>
-            </div>
-        </form>
-        
-        <script src="" async defer></script>
+        <section layout:fragment="content">
+            <h2>Update book</h2>
+            <form action="#" method="post" th:action="@{/books/update/{isbn}(isbn=${book.isbn})}" th:object="${book}">
+                <div>
+                    <label for="isbn">Title</label>
+                    <input type="text" th:field="*{title}">
+                </div>
+                <div>
+                    <label for="isbn">Author</label>
+                    <input type="text" th:field="*{author}">
+                </div>
+                <div>
+                    <label for="isbn">Publisher</label>
+                    <input type="text" th:field="*{publisher}">
+                </div>
+                <div>
+                    <label for="isbn">Year</label>
+                    <input type="text" th:field="*{year}">
+                </div>
+                <div>
+                    <button type="submit" th:text="'Submit'"/>
+                </div>
+            </form>
+
+            <a th:href="@{/books}" th:text="'Back'"/>
+        </section>            
     </body>
 </html>
