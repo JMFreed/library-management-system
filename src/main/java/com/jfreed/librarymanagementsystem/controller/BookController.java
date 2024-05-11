@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
-
-
 @Controller
 @RequestMapping("/books")
 public class BookController {
@@ -50,6 +48,18 @@ public class BookController {
         bookService.save(book);
         return "redirect:/books";
     }
+
+    @GetMapping("/update/{isbn}")
+    public String edit(@ModelAttribute("isbn") String isbn, Model model) {
+        Book book = bookService.findByIsbn(isbn);
+        model.addAttribute("book", book);
+        return "books/update";
+    }
     
+    @PostMapping("/update/{isbn}")
+    public String edit(@ModelAttribute("book") Book book, Model model) {
+        bookService.save(book);
+        return "redirect:/books";
+    }
     
 }

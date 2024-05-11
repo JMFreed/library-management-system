@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title th:text="${@environment.getProperty('spring.application.name')}"></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <h2>Update book</h2>
+        <form action="#" method="post" th:action="@{/books/update/{isbn}(isbn=${book.isbn})}" th:object="${book}">
+            <div>
+                <label for="isbn">Title</label>
+                <input type="text" th:field="*{title}">
+            </div>
+            <div>
+                <label for="isbn">Author</label>
+                <input type="text" th:field="*{author}">
+            </div>
+            <div>
+                <label for="isbn">Publisher</label>
+                <input type="text" th:field="*{publisher}">
+            </div>
+            <div>
+                <label for="isbn">Year</label>
+                <input type="text" th:field="*{year}">
+            </div>
+            <div>
+                <button type="submit" th:text="'Submit'"/>
+            </div>
+        </form>
+        
+        <script src="" async defer></script>
+    </body>
+</html>

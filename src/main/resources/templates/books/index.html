@@ -18,6 +18,7 @@
                 <th>Author</th>
                 <th>Publisher</th>
                 <th>Year</th>
+                <td>Actions</th>
             </thead>
             <tbody>
                 <tr th:each="book : ${books}">
@@ -28,6 +29,18 @@
                     <td th:text="${book.author}"/>
                     <td th:text="${book.publisher}"/>
                     <td th:text="${book.year}"/>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    <a th:href="@{/books/view/{isbn}(isbn=${book.isbn})}" th:text="'View'"/>
+                                </td>
+                                <td>
+                                    <a th:href="@{/books/update/{isbn}(isbn=${book.isbn})}" th:text="'Update'"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
                 </tr>
             </tbody>
         </table>
